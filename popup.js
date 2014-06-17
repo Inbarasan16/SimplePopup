@@ -23,24 +23,21 @@ Author  :Inbarasan
             displayHide(sel);
             Container = sel.context.hash;
             closebtn = $(Container).find('a.close');
-            //console.log(closebtn);
             sel.click(function () {
                 $.popup(sel);
             });
             closebtn.click(function () {
                 popclose(sel, Container);
-                event.preventDefault();
+                event.preventDefault ? event.preventDefault() : event.returnValue = false;
             });
         });
 
     };
     $.popup = function (sel) {
-        // console.log(sel);
         Container = sel.context.hash;
         if (Container) {
             var overlay = document.createElement('div');
             overlay.setAttribute('class', 'overlay');
-            //console.log(overlay);
             document.body.appendChild(overlay);
             $('.overlay').append($(Container));
             $(Container).addClass('popbox').css('display', 'block');
@@ -50,6 +47,6 @@ Author  :Inbarasan
             poph = poph / 2;
             $('.popbox').css('margin-top', -poph).css('margin-left', -popw);
         }
-        event.preventDefault();
+        event.preventDefault ? event.preventDefault() : event.returnValue = false;
     };
 })(jQuery);
